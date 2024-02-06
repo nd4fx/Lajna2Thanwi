@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template
-from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = -1
@@ -23,12 +22,4 @@ def my_form_post():
         return render_template('index.html') + "<h3>يرجى ادخال رقم صحيح<h3>"
 
 
-# app.run(host="0.0.0.0", port=8080)
-
-if __name__ == '__name__':
-  # Debug/Development
-  # app.run(debug=True, host="0.0.0.0", port="5000")
-  # Production
-  http_server = WSGIServer(('', 5000), app)
-  http_server.serve_forever()
-
+app.run(host="0.0.0.0", port=8080)
